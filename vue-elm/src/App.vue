@@ -1,35 +1,61 @@
 <template>
   <div id="app">
-    <v-header></v-header>
-    <div class="tab">
-      <div class="tab-item">商家</div>
-      <div class="tab-item">评论</div>
-      <div class="tab-item">优惠</div>
-    </div>
-    <router-view/>
+    <v-header-item :seller="seller"></v-header-item>
+    <ul class="tab border-1px">
+      <li class="tab-item">
+        <router-link to="/GoodsItem">商品</router-link>
+      </li>
+      <li class="tab-item">
+        <router-link to="/RatingsItem">评论</router-link>
+      </li>
+      <li class="tab-item" to="/SellerItem">
+        <router-link to="/SellerItem">优惠</router-link>
+      </li>
+    </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import header from './components/header/header';
+  import HeaderItem from './components/header/HeaderItem';
+  const ERR_OK = 0;
   export default {
     name: 'App',
+    data() {
+      return {
+        seller: {}
+      };
+    },
+    created() {
+      this.sell_api.seller({
+        id: 0
+      }).then((res) => {
+        if (res.errno === ERR_OK) {
+          console.log(res);
+          this.seller = Object.assign({}, res.data);
+        }
+      });
+    },
     components: {
-      'v-header': header // vue组件命名统一用v-开头
+      'v-header-item': HeaderItem // vue组件命名统一用v-开头
     }
   };
 
 </script>
 
-<style scoped lang='less'>
-  #app {
-    .tab {
-      display: flex;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      .tab-item {
-        flex: 1;
+<style scoped lang="less">
+  @import './assets/style/mixin.less';
+  .tab {
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    .border-1px(#ccc);
+    .tab-item {
+      flex: 1;
+      .active {
+        display: block;
+        color: rgb(240, 20, 20);
       }
     }
   }

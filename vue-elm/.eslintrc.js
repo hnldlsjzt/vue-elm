@@ -31,5 +31,6 @@ module.exports = {
     "eol-last": 0, // 忽略文件以换行符结束
     "space-before-function-paren": 0, // 忽略函数()前面的空格
     "key-spacing": [0, { "beforeColon": false, "afterColon": true }],//对象字面量中冒号的前后空格
+    'import/no-unresolved': 0,
   }
 }
