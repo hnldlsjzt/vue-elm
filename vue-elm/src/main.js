@@ -19,5 +19,8 @@ new Vue({
   components: {
     App
   },
+  data: {
+    eventHub: new Vue() // 给data添加一个 名字为eventHub 的空vue对象,用来传输非父子组件的数据
+  },
   template: '<App/>'
 });

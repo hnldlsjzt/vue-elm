@@ -1,8 +1,20 @@
 @import "theme";
-.bg-blue{
-  background: blue;
+.bg-blue {
+    background: blue;
 }
 
-.bg-gray{
-  background: @colorGray;
+.bg-gray {
+    background: @colorGray;
+}
+
+.clearfix {
+    display: inline-block;
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 0;
+        line-height: 0;
+        visibility: hidden;
+    }
 }

@@ -3,5 +3,8 @@ import Ajax from './api.js';
 export default {
   seller(arg) {
     return Ajax.ajaxGet('seller', arg);
+  },
+  goods(arg) {
+    return Ajax.ajaxGet('goods', arg);
   }
 };

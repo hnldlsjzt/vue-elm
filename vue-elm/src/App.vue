@@ -12,7 +12,7 @@
         <router-link to="/SellerItem">优惠</router-link>
       </li>
     </ul>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
 </template>
 
@@ -53,6 +53,11 @@
     .border-1px(#ccc);
     .tab-item {
       flex: 1;
+      a {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+      }
       .active {
         display: block;
         color: rgb(240, 20, 20);
