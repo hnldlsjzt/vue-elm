@@ -6,5 +6,8 @@ export default {
   },
   goods(arg) {
     return Ajax.ajaxGet('goods', arg);
-  }
+  },
+  ratings(arg) {
+    return Ajax.ajaxGet('ratings', arg);
+  },
 };
