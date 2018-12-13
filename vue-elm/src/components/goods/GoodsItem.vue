@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wraper" ref="menuWrapper">
       <ul>
-        <li class='menu-item' v-for="(item,index) in goods" :key="index" :class="{'current':currentIndex === index}" @click="selectFood(index,$event)">
+        <li class='menu-item' v-for="(item,index) in goods" :key="index" :class="{'current':currentIndex === index}" @click="selectMenu(index,$event)">
           <span class="text"> <span class="icon" v-show="item.type>0" :class="classMap[item.type]"></span>{{item.name}}</span>
         </li>
       </ul>
@@ -12,7 +12,7 @@
         <li class='foods-list foods-list-hook' v-for="(item,index) in goods" :key="index">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li class='foods-item' v-for="(food,index) in item.foods" :key="index">
+            <li class='foods-item' v-for="(food,index) in item.foods" :key="index" @click="selectFood(food,$event)">
               <div class="icon">
                 <img :src="food.icon" width="57" height="57">
               </div>
@@ -37,6 +37,7 @@
       </ul>
     </div>
     <v-shopcart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" :selectFoods="selectFoods"></v-shopcart>
+    <v-food-info :food="selectedFood" ref="foodInfo"></v-food-info>
   </div>
 </template>
 
@@ -44,6 +45,7 @@
   import BScroll from 'better-scroll';
   import Shopcart from 'components/shopcart/Shopcart';
   import CartControl from 'components/cartControl/CartControl';
+  import FoodInfo from 'components/foodInfo/FoodInfo';
   const ERR_OK = 0;
   export default {
     name: 'GoodsItem',
@@ -62,7 +64,8 @@
     },
     components: {
       'v-shopcart': Shopcart,
-      'v-cart-control': CartControl
+      'v-cart-control': CartControl,
+      'v-food-info': FoodInfo
     },
     computed: {
       currentIndex() {
@@ -123,10 +126,14 @@
           this.listHeight.push(height);
         }
       },
-      selectFood(index, event) {
+      selectMenu(index, event) {
         let foodList = this.$refs.foodWrapper.getElementsByClassName('foods-list-hook');
         let foodli = foodList[index]; // 点击menu后，对应的foodlist[index]
         this.foodScroll.scrollToElement(foodli, 300);
+      },
+      selectFood(food, event) {
+        this.selectedFood = food;
+        this.$refs.foodInfo.initShow();
       }
     }
   };

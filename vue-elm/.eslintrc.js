@@ -32,5 +32,6 @@ module.exports = {
     "space-before-function-paren": 0, // 忽略函数()前面的空格
     "key-spacing": [0, { "beforeColon": false, "afterColon": true }],//对象字面量中冒号的前后空格
     'import/no-unresolved': 0,
+    'no-unused-vars':0,
   }
 }
