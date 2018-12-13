@@ -9,5 +9,5 @@ export default {
   },
   ratings(arg) {
     return Ajax.ajaxGet('ratings', arg);
-  },
+  }
 };

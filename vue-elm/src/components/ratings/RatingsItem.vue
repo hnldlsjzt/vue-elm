@@ -107,7 +107,7 @@
       _initScrool() {
         this.ratingScrool = new BScroll(this.$refs.ratingsContent, {
           click: true
-        })
+        });
       },
       filterRatings(type) {
         this.selectType = type;
@@ -131,7 +131,6 @@
         } else {
           return this.selectType === type;
         }
-
       }
     }
   };
